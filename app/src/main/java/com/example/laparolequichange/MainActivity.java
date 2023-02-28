@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             String value = "R.drawable." + pair[1];
             String number = pair[2];
 
-            Livres livre = new Livres( key,value,Integer.valueOf(number));
+            Livres livre = new Livres( key, value,Integer.valueOf(number));
             livres.add(livre);
         }
         Log.i("list items", livres.toString());
