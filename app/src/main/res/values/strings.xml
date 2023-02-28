@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">LaParoleQuiChange</string>
+    <string name="un_ministere_de_calvary_chapel_port_au_prince">Un ministere de calvary chapel port-au-prince</string>
+    <string-array name="tags">
+        <item>Genèse:genese:50</item>
+        <item>Exode:exode:40</item>
+        <item>Lévitique:levitique:27</item>
+        <item>Nombres:nombres:36</item>
+        <item>Deutéronome:deuteronome:34</item>
+        <item>Josué:josue:24</item>
+        <item>Juges:juges:21</item>
+        <item>Ruth:ruth:4</item>
+        <item>1 Samuel:samuel1:31</item>
+        <item>2 Samuel:samuel2:24</item>
+        <item>1 Rois:rois1:22</item>
+        <item>2 Rois:rois2:25</item>
+        <item>1 Chroniques:chroniques1:29</item>
+        <item>2 Chroniques:chroniques2:36</item>
+        <item>Esdras:esdras:10</item>
+        <item>Néhémie:nehemie:13</item>
+        <item>Esther:esther:10</item>
+        <item>Job:job:42</item>
+        <item>Psaumes:psaumes:150</item>
+        <item>Proverbes:proverbes:31</item>
+        <item>Ecclésiaste:ecclésiaste:12</item>
+        <item>Cantique des cantiques:cantiquedescantiques:8</item>
+        <item>Ésaïe:esaie:66</item>
+        <item>Jérémie:jeremie:52</item>
+        <item>Lamentations:lamentations:5</item>
+        <item>Ézéchiel:ezechiel:48</item>
+        <item>Daniel:daniel:12</item>
+        <item>Osée:osee:14</item>
+        <item>Joël:joel:3</item>
+        <item>Amos:amos:9</item>
+        <item>Abdias:abdias:1</item>
+        <item>Jonas:jonas:4</item>
+        <item>Michée:michee:7</item>
+        <item>Nahum:nahum:3</item>
+        <item>Habacuc:habacuc:3</item>
+        <item>Sophonie:sophonie:3</item>
+        <item>Aggée:aggee:2</item>
+        <item>Zacharie:zacharie:14</item>
+        <item>Malachie:malachie:4</item>
+        <item>Matthieu:matthieu:28</item>
+        <item>Marc:marc:16</item>
+        <item>Luc:luc:24</item>
+        <item>Jean:jean:21</item>
+        <item>Actes:actes:28</item>
+        <item>Romains:romains:16</item>
+        <item>1 Corinthiens:corinthiens1:16</item>
+        <item>2 Corinthiens:corinthiens2:13</item>
+        <item>Galates:galates:6</item>
+        <item>Éphésiens:ephesiens:6</item>
+        <item>Philippiens:philippiens:4</item>
+        <item>Colossiens:colossiens:4</item>
+        <item>1 Thessaloniciens:thessaloniciens1:5</item>
+        <item>2 Thessaloniciens:thessaloniciens2:3</item>
+        <item>1 Timothée:timothee1:6</item>
+        <item>2 Timothée:timothee2:4</item>
+        <item>Tite:tite:3</item>
+        <item>Philémon:philemon:1</item>
+        <item>Hébreux:hebreux:13</item>
+        <item>Jacques:jacques:5</item>
+        <item>1 Pierre:pierre1:5</item>
+        <item>2 Pierre:pierre2:3</item>
+        <item>1 Jean:jean1:5</item>
+        <item>2 Jean:jean2:1</item>
+        <item>3 Jean:jean3:1</item>
+        <item>Jude:jude:1</item>
+        <item>Apocalypse:apocalypse:22</item>
+    </string-array>
+</resources>
+
