@@ -1,28 +1,27 @@
 package com.example.laparolequichange;
 
-import android.widget.TextView;
-
 public class Livres  {
 
     private String book_name;
-    private String image_path;
     private int chapter_number;
+    private int imageResourceId;
+    private String desc_livre;
 
 
-    public Livres(String book_name, String image_path, int chapter_number) {
+    public Livres(String book_name, int chapter_number, int imageResourceId,String desc_livre) {
         this.book_name = book_name;
-        this.image_path = image_path;
         this.chapter_number = chapter_number;
+        this.imageResourceId = imageResourceId;
+        this.desc_livre = desc_livre;
 
     }
 
-    public String getImage_path() {
-        return image_path;
+    public Livres(String book_name, int chapter_number, int imageResourceId) {
+        this.book_name = book_name;
+        this.chapter_number = chapter_number;
+        this.imageResourceId = imageResourceId;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
-    }
 
     public String getBook_name() {
         return book_name;
@@ -38,5 +37,17 @@ public class Livres  {
 
     public void setChapter_number(int chapter_number) {
         this.chapter_number = chapter_number;
+    }
+
+    public String getDesc_livre() {
+        return desc_livre;
+    }
+
+    public void setDesc_livre(String desc_livre) {
+        this.desc_livre = desc_livre;
+    }
+
+    public int getImageResourceId() {
+        return imageResourceId;
     }
 }

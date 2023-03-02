@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/drawable-v24/circle_small.xml" value="0.2075" />
+        <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/drawable/circle_small_red.xml" value="0.2075" />
         <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/layout/activity_chapitres.xml" value="0.1859375" />
         <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/layout/activity_livres.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/layout/activity_main.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/layout/activity_splash.xml" value="0.2" />
-        <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/layout/item_livres.xml" value="0.12001811594202899" />
+        <entry key="..\:/Users/Leyoo/AndroidStudioProjects/LaParoleQuiChange/app/src/main/res/layout/item_livres.xml" value="0.22" />
       </map>
     </option>
   </component>

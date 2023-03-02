@@ -5,10 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,24 +53,38 @@ public class MainActivity extends AppCompatActivity {
         //Recycler view setup: layout manager and adapter
         rvLivres.setLayoutManager(layoutManager);
         rvLivres.setAdapter(adapter);
-        livreItem();
+        try {
+            livreItem();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
-    public void livreItem(){
-        String[] tags = getResources().getStringArray(R.array.tags);
-        Log.i("lengh", String.valueOf(tags.length));
-        for(String tag : tags) {
-            String[] pair = tag.split(":");
+    public void livreItem() throws IOException {
 
-            String key = pair[0];
-            String value = "R.drawable." + pair[1];
-            String number = pair[2];
+        AssetManager assetManager = getAssets();
+        InputStream inputStream = assetManager.open("LivreInfos.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            Livres livre = new Livres( key, value,Integer.valueOf(number));
+        String line;
+        while ((line = reader.readLine()) != null){
+
+            String[] data = line.split(":");
+            String key = data[0].trim();
+            String value = data[1].trim();
+            String number = data[2].trim();
+            String description = data[3].trim();
+            String available = data[4].trim();
+
+            int imageId = getResources().getIdentifier(value,"drawable", getPackageName());
+
+            Livres livre = new Livres( key,Integer.valueOf(number),imageId,description);
             livres.add(livre);
         }
-        Log.i("list items", livres.toString());
+        reader.close();
+
+
     }
 }

@@ -1,0 +1,66 @@
+        Genèse:genese:50:Election d'une Nation:vrai
+        Exode:exode:40:Rédemption-Salut:vrai
+        Lévitique:levitique:27:Sanctification-Consécration:vrai
+        Nombres:nombres:36:Direction:vrai
+        Deutéronome:deuteronome:34:Instruction:vrai
+        Josué:josue:24:Possession:vrai
+        Juges:juges:21:Oppression-Délivrance:vrai
+        Ruth:ruth:4:Rachat:vrai
+        1 Samuel:samuel1:31:Souveraineté de Dieu:vrai
+        2 Samuel:samuel2:24:Souveraineté de Dieu:vrai
+        1 Rois:rois1:22:Division-Désobéissance:vrai
+        2 Rois:rois2:25:Division-Désobéissance:vrai
+        1 Chroniques:chroniques1:29:Dieu, présent dans les problèmes:faux
+        2 Chroniques:chroniques2:36:Dieu, présent dans les problèmes:faux
+        Esdras:esdras:10:Parole de Dieu:faux
+        Néhémie:nehemie:13:Réveil par la parole:faux
+        Esther:esther:10:Providence de Dieu:faux
+        Job:job:42:Purification:faux
+        Psaumes:psaumes:150:Communion:faux
+        Proverbes:proverbes:31:Sagesse:faux
+        Ecclésiaste:ecclesiastes:12:Satisfaction:faux
+        Cantique des cantiques:cantiquedescantiques:8:Union d'Amour avec Dieu:faux
+        Ésaïe:esaie:66:L'Evangile de l'Ancien Testament:faux
+        Jérémie:jeremie:52:Désobéissance d'Israël:faux
+        Lamentations:lamentations:5:La Souffrance d'un Prophète:faux
+        Ézéchiel:ezekiel:48:Avertissements:faux
+        Daniel:daniel:12:Succès dans l'Obéissance à Dieu:vrai
+        Osée:osee:14:Dieu Parfait - Homme Pécheur:vrai
+        Joël:joel:3:Jour de l'Eternel est proche:vrai
+        Amos:amos:9:Avertissement:vrai
+        Abdias:abdias:1:Orgueil, La Grangrène qui ronge:vrai
+        Jonas:jonas:4:La Bonté de Dieu:vrai
+        Michée:michee:7:Etat Moral du Peuple de Dieu:vrai
+        Nahum:nahum:3:Point de Non-Retour:vrai
+        Habacuc:habakuk:3:Intimité avec Dieu:vrai
+        Sophonie:sophonie:3:Jugement et Royaume de Dieu:vrai
+        Aggée:aggee:2:Témoignage du Croyant:vrai
+        Zacharie:zacharie:14:Jéhovah se souvient et bénit:vrai
+        Malachie:malachie:4:Péché par Ignorance:vrai
+        Matthieu:matthieu:28:Jésus, le Roi:vrai
+        Marc:marc:16:Jésus, le Serviteur:vrai
+        Luc:luc:24:Jésus, l'homme:vrai
+        Jean:jean:21:Jésus, le Messie:vrai
+        Actes:actes:28:Puissance de l'Evangile:vrai
+        Romains:romains:16:Assurance:vrai
+        1 Corinthiens:corinthiens1:16:Saint-Esprit, Solution des problèmes:vrai
+        2 Corinthiens:corinthiens2:13:Vie Chrétienne:vrai
+        Galates:galates:6:Salut par Grâce:vrai
+        Éphésiens:ephesiens:6:Salut et Vie Chrétienne:vrai
+        Philippiens:philippiens:4:Succès dans l'Humilité:vrai
+        Colossiens:colossiens:4:Liberté et Dure Labeur:vrai
+        1 Thessaloniciens:thessaloniciens1:5:Foi-Amour-Espérance:vrai
+        2 Thessaloniciens:thessaloniciens2:3:Enlèvement, Etes-vous prêt?:vrai
+        1 Timothée:timothee1:6:Leadership Chrétien 1:vrai
+        2 Timothée:timothee2:4:Leadership Chrétien 2:vrai 
+        Tite:tite:3:Leadership Chrétien 3:vrai
+        Philémon:philemon:1:Jésus vous aime:vrai
+        Hébreux:hebreux:13:Jésus, notre Souverain Sacrificateur:vrai
+        Jacques:jacques:5: La Foi sans Oeuvres est Morte:vrai
+        1 Pierre:pierre1:5: L'Eglise persécutée:vrai
+        2 Pierre:pierre2:3:Efforts Requis:vrai
+        1 Jean:jean1:5: Dieu est Amour:vrai
+        2 Jean:jean2:1: Dieu est Lumière:vrai
+        3 Jean:jean3:1:Dieu est Vie:vrai
+        Jude:jude:1:Apostasie:vrai
+        Apocalypse:apocalypse:22:Jugement à venir:vrai

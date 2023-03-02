@@ -1,6 +1,7 @@
 package com.example.laparolequichange;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,11 +64,14 @@ public class LivreAdapter extends RecyclerView.Adapter<LivreAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivLivre;
         TextView tvNomLivre;
+        TextView tvDescription;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
             super(itemView);
             ivLivre = itemView.findViewById(R.id.ivImageLivre);
             tvNomLivre = itemView.findViewById(R.id.tvNomLivre);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,17 +84,13 @@ public class LivreAdapter extends RecyclerView.Adapter<LivreAdapter.ViewHolder> 
 
         public void bind(Livres livre, ViewHolder holder) {
             tvNomLivre.setText(livre.getBook_name());
+            ivLivre.setImageResource(livre.getImageResourceId());
+            tvDescription.setText(livre.getDesc_livre());
 
-//            Glide.with(context)
-//                    .load(livre.getImage_path())
-//                    .transform(new RoundedCorners(50))
-//                    .into(ivLivre);
-              String uri = "@drawable/"+ livre.getImage_path();
-            int imageResource = holder.itemView.getResources().getIdentifier(uri,null, holder.itemView.getContext().getPackageName());
-//            Drawable res = holder.itemView.getResources().getDrawable(imageResource);
-//            ivLivre.setImageDrawable(res);
 
 
         }
+
+
     }
 }
