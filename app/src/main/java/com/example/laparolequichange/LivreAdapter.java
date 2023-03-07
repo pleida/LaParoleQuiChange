@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -65,12 +66,14 @@ public class LivreAdapter extends RecyclerView.Adapter<LivreAdapter.ViewHolder> 
         ImageView ivLivre;
         TextView tvNomLivre;
         TextView tvDescription;
+        ImageView ivAvailable;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
             super(itemView);
             ivLivre = itemView.findViewById(R.id.ivImageLivre);
             tvNomLivre = itemView.findViewById(R.id.tvNomLivre);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            ivAvailable = itemView.findViewById(R.id.ivAvailable);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -86,11 +89,13 @@ public class LivreAdapter extends RecyclerView.Adapter<LivreAdapter.ViewHolder> 
             tvNomLivre.setText(livre.getBook_name());
             ivLivre.setImageResource(livre.getImageResourceId());
             tvDescription.setText(livre.getDesc_livre());
-
-
-
+            if (livre.getAvailable().equals("vrai") ){
+                Drawable drawable = ContextCompat.getDrawable(context, R.drawable.circle_medium);
+                ivAvailable.setImageDrawable(drawable);
+            }else {
+                Drawable drawable = ContextCompat.getDrawable(context, R.drawable.circle_medium_red);
+                ivAvailable.setImageDrawable(drawable);
+            }
         }
-
-
     }
 }

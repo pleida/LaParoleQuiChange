@@ -1,19 +1,34 @@
 package com.example.laparolequichange;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Livres  {
 
     private String book_name;
     private int chapter_number;
     private int imageResourceId;
     private String desc_livre;
+    private String available;
+
+    public Livres(){}
 
 
-    public Livres(String book_name, int chapter_number, int imageResourceId,String desc_livre) {
+    public Livres(String book_name, int chapter_number, int imageResourceId,String desc_livre, String available) {
         this.book_name = book_name;
         this.chapter_number = chapter_number;
         this.imageResourceId = imageResourceId;
         this.desc_livre = desc_livre;
+        this.available = available;
 
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public Livres(String book_name, int chapter_number, int imageResourceId) {

@@ -1,6 +1,7 @@
 package com.example.laparolequichange;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,9 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import org.parceler.Parcels;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // assigning ID of the toolbar to a variable
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+//        toolbar.setTitle("La Parole Qui Change");
+
+        TextView textView = findViewById(R.id.tvTitle);
+        textView.setText("La Parole Qui Change");
+        // using toolbar as ActionBar
+        setSupportActionBar(toolbar);
+
 
         // Find the recycler view
         rvLivres = findViewById(R.id.rvLivres);
@@ -42,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View itemView, int position) {
                 Intent intent = new Intent(MainActivity.this,Chapitres.class);
                 Livres livre = livres.get(position);
+                intent.putExtra("livre", Parcels.wrap(livre));
 
                 MainActivity.this.startActivity(intent);
             }
@@ -80,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             int imageId = getResources().getIdentifier(value,"drawable", getPackageName());
 
-            Livres livre = new Livres( key,Integer.valueOf(number),imageId,description);
+            Livres livre = new Livres( key,Integer.valueOf(number),imageId,description,available);
             livres.add(livre);
         }
         reader.close();
