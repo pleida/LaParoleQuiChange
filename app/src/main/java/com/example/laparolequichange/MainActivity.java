@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -101,5 +102,11 @@ public class MainActivity extends AppCompatActivity {
         reader.close();
 
 
+    }
+    // using inflater for menu
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.sub_menu, menu);
+        return true;
     }
 }
