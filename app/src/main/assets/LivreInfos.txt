@@ -37,9 +37,9 @@
         Aggée:aggee:2:Témoignage du Croyant:vrai
         Zacharie:zacharie:14:Jéhovah se souvient et bénit:vrai
         Malachie:malachie:4:Péché par Ignorance:vrai
-        Matthieu:matthieu:28:Jésus, le Roi:vrai
-        Marc:marc:16:Jésus, le Serviteur:vrai
-        Luc:luc:24:Jésus, l'homme:vrai
+        Matthieu:matthieu:28:Jésus, le Roi:faux
+        Marc:marc:16:Jésus, le Serviteur:faux
+        Luc:luc:24:Jésus, l'homme:faux
         Jean:jean:21:Jésus, le Messie:vrai
         Actes:actes:28:Puissance de l'Evangile:vrai
         Romains:romains:16:Assurance:vrai

@@ -1,16 +1,24 @@
 package com.example.laparolequichange;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -31,8 +39,16 @@ public class Details extends AppCompatActivity {
     PDFView pdfView;
     ProgressBar progressBar;
 
+    // creating a variable for
+    // button and media player
+    ImageButton playBtn;
+    MediaPlayer mediaPlayer;
+
     // url of our PDF file.
     String pdfurl = "https://laparolequichange.org/messages/";
+
+    String nameBook;
+    int chapterNber;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -48,7 +64,7 @@ public class Details extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         // assigning ID of the toolbar to a variable
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         // set Progress bar
         progressBar = findViewById(R.id.pb);
@@ -56,9 +72,9 @@ public class Details extends AppCompatActivity {
 
 
         Livres livres = (Livres) Parcels.unwrap(getIntent().getParcelableExtra("livre"));
-        int chapterNber = getIntent().getExtras().getInt("chapitre");
+        chapterNber = getIntent().getExtras().getInt("chapitre");
 
-        String nameBook = livres.getBook_name().replaceAll("\\s","").replaceAll("è","e").replaceAll("é","e")
+        nameBook = livres.getBook_name().replaceAll("\\s","").replaceAll("è","e").replaceAll("é","e")
                 .replaceAll("ï","i").replaceAll("ë","e");
 
 
@@ -80,7 +96,41 @@ public class Details extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_left);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+        // initializing our buttons
+        playBtn = findViewById(R.id.btnPlay);
+
+
+        // setting on click listener for our play and pause buttons audio.
+        playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calling method to play audio.
+                if ( mediaPlayer!= null && mediaPlayer.isPlaying()) {
+                    Drawable drawable = ContextCompat.getDrawable(v.getContext(), R.drawable.pause_circle);
+                    playBtn.setImageDrawable(drawable);
+                    // pausing the media player if media player
+                    // is playing we are calling below line to
+                    // stop our media player.
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                    mediaPlayer.release();
+
+                }else{
+                    Drawable drawable = ContextCompat.getDrawable(v.getContext(), R.drawable.play_circle);
+                    playBtn.setImageDrawable(drawable);
+                    playAudio();
+                }
+
+
+            }
+        });
+
+
     }
+
 
     // create an async task class for loading pdf file from URL.
     class RetrievePDFfromUrl extends AsyncTask<String, Void, InputStream> {
@@ -121,5 +171,33 @@ public class Details extends AppCompatActivity {
             progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         }
+    }
+
+    private void playAudio() {
+
+        String audioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + "_15min.mp3";
+        Log.i("link",audioUrl);
+
+        // initializing media player
+        mediaPlayer = new MediaPlayer();
+
+        // below line is use to set the audio
+        // stream type for our media player.
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        // below line is use to set our
+        // url to our media player.
+        try {
+            mediaPlayer.setDataSource(audioUrl);
+            // below line is use to prepare
+            // and start our media player.
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // below line is use to display a toast message.
+        Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
     }
 }

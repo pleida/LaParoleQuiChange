@@ -24,8 +24,18 @@
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/controlsPanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
+    <include
+        android:id="@+id/controlsPanel"
+        layout="@layout/controls_panel"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 
 </RelativeLayout>
