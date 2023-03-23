@@ -6,12 +6,14 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,12 +45,29 @@ public class Details extends AppCompatActivity {
     // button and media player
     ImageButton playBtn;
     MediaPlayer mediaPlayer;
+    // creating a seekbar
+    SeekBar seekBar;
+    // creating
+    TextView txtAudioPositon;
+    TextView txtAudioDuration;
 
     // url of our PDF file.
     String pdfurl = "https://laparolequichange.org/messages/";
 
     String nameBook;
     int chapterNber;
+    boolean isLoad = false;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -97,6 +116,11 @@ public class Details extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_left);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        // set a seekBar
+        seekBar = findViewById(R.id.seekTo);
+        // set Audio position and duration
+        txtAudioPositon = findViewById(R.id.txtSong_position);
+        txtAudioDuration = findViewById(R.id.txtDuration);
 
 
         // initializing our buttons
@@ -108,29 +132,10 @@ public class Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // calling method to play audio.
-                if ( mediaPlayer!= null && mediaPlayer.isPlaying()) {
-                    Drawable drawable = ContextCompat.getDrawable(v.getContext(), R.drawable.pause_circle);
-                    playBtn.setImageDrawable(drawable);
-                    // pausing the media player if media player
-                    // is playing we are calling below line to
-                    // stop our media player.
-                    mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-
-                }else{
-                    Drawable drawable = ContextCompat.getDrawable(v.getContext(), R.drawable.play_circle);
-                    playBtn.setImageDrawable(drawable);
-                    playAudio();
-                }
-
-
+                playAudio(v);
             }
         });
-
-
     }
-
 
     // create an async task class for loading pdf file from URL.
     class RetrievePDFfromUrl extends AsyncTask<String, Void, InputStream> {
@@ -157,7 +162,7 @@ public class Details extends AppCompatActivity {
             } catch (IOException e) {
                 // this is the method
                 // to handle errors.
-                e.printStackTrace();
+//                e.printStackTrace();
                 return null;
             }
             return inputStream;
@@ -167,13 +172,16 @@ public class Details extends AppCompatActivity {
         protected void onPostExecute(InputStream inputStream) {
             // after the execution of our async
             // task we are loading our pdf in our pdf view.
-            pdfView.fromStream(inputStream).load();
-            progressBar.setVisibility(ProgressBar.INVISIBLE);
+            if (inputStream != null){
+                pdfView.fromStream(inputStream).load();
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
+            }
+
 
         }
     }
-
-    private void playAudio() {
+    // creating a method play audio
+    private void getAudio() {
 
         String audioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + "_15min.mp3";
         Log.i("link",audioUrl);
@@ -192,12 +200,101 @@ public class Details extends AppCompatActivity {
             // below line is use to prepare
             // and start our media player.
             mediaPlayer.prepare();
-            mediaPlayer.start();
-
+            isLoad = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
         // below line is use to display a toast message.
         Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
     }
+
+
+    // create the audio position method
+    private void AudioPosition(){
+        long millisecondsCurrent = mediaPlayer.getCurrentPosition();
+        long minutesCurrent = millisecondsCurrent / 60000;
+        long secondsCurrent = (millisecondsCurrent % 60000) / 1000;
+        String timeStringCurrent = String.format("%02d:%02d", minutesCurrent, secondsCurrent);
+        txtAudioPositon.setText(timeStringCurrent);
+    }
+
+    // create the audio duration method
+    private void AudioDuration(){
+        long milliseconds = mediaPlayer.getDuration();
+        long minutes = milliseconds / 60000;
+        long seconds = (milliseconds % 60000) / 1000;
+        String timeString = String.format("%02d:%02d", minutes, seconds);
+
+        txtAudioDuration.setText(timeString);
+    }
+
+    // create the play audio method
+    private void playAudio(View v){
+        if ( mediaPlayer!= null && mediaPlayer.isPlaying()) {
+            Drawable drawable = ContextCompat.getDrawable(v.getContext(), R.drawable.play_circle);
+            playBtn.setImageDrawable(drawable);
+            // pausing the media player if media player
+            // is playing we are calling below line to
+            // stop our media player.
+            mediaPlayer.pause();
+
+        }else{
+            Drawable drawable = ContextCompat.getDrawable(v.getContext(), R.drawable.pause_circle);
+            playBtn.setImageDrawable(drawable);
+            if(!isLoad){
+                getAudio();
+            }
+
+
+            mediaPlayer.start();
+
+            seekBar.setMax(mediaPlayer.getDuration());
+
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if (fromUser) {
+                        mediaPlayer.seekTo(progress); // seek to position
+                    }
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    mediaPlayer.pause(); // pause playback while user adjusts SeekBar
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    mediaPlayer.start(); // resume playback once user releases SeekBar thumb
+                }
+            });
+
+            mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                @Override
+                public void onSeekComplete(MediaPlayer mp) {
+                    seekBar.setProgress(mp.getCurrentPosition());
+                }
+            });
+
+            if ( mediaPlayer != null && mediaPlayer.isPlaying()) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mediaPlayer != null) {
+                            if (mediaPlayer.isPlaying()) {
+                                seekBar.setProgress(mediaPlayer.getCurrentPosition());
+                                AudioPosition();
+                                new Handler().postDelayed(this, 100); // update every 100ms
+                            }
+                        }
+
+                    }
+                }, 100);
+            }
+            // for the duration
+            AudioDuration();
+
+        }
+    }
+
 }
