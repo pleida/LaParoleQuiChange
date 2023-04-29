@@ -44,12 +44,15 @@ public class Details extends AppCompatActivity {
     // creating a variable for
     // button and media player
     ImageButton playBtn;
+    ImageButton btnNext;
+    ImageButton btnPreview;
     MediaPlayer mediaPlayer;
     // creating a seekbar
     SeekBar seekBar;
     // creating
     TextView txtAudioPositon;
     TextView txtAudioDuration;
+    TextView tvMessage;
 
     // url of our PDF file.
     String pdfurl = "https://laparolequichange.org/messages/";
@@ -57,6 +60,8 @@ public class Details extends AppCompatActivity {
     String nameBook;
     int chapterNber;
     boolean isLoad = false;
+    char audioLetter = 'a';
+    //int audioIndex = 0;
 
     @Override
     protected void onPause() {
@@ -107,6 +112,36 @@ public class Details extends AppCompatActivity {
         // set a text in the toolbar
         TextView textView = findViewById(R.id.tvTitle);
         textView.setText(livres.getBook_name() + " " + String.valueOf(chapterNber)  );
+
+        // The message if there is no pdf
+        tvMessage = findViewById(R.id.tvMessage);
+
+        // initializing the buttons
+        btnNext = findViewById(R.id.btnNext);
+        btnPreview = findViewById(R.id.btnPreview);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(audioLetter == 'a'){
+                    audioLetter = 'b';
+                }else if(audioLetter == 'b'){
+                    audioLetter = 'c';
+                }
+                String otherAudioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + audioLetter + "_15min.mp3";
+                Log.i("links",otherAudioUrl);
+
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+
+                    loadAudio(otherAudioUrl);
+
+                }
+
+            }
+        });
 
         // using toolbar as ActionBar
         setSupportActionBar(toolbar);
@@ -175,6 +210,9 @@ public class Details extends AppCompatActivity {
             if (inputStream != null){
                 pdfView.fromStream(inputStream).load();
                 progressBar.setVisibility(ProgressBar.INVISIBLE);
+            }else{
+                tvMessage.setVisibility(TextView.VISIBLE);
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
 
 
@@ -184,6 +222,7 @@ public class Details extends AppCompatActivity {
     private void getAudio() {
 
         String audioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + "_15min.mp3";
+
         Log.i("link",audioUrl);
 
         // initializing media player
@@ -195,14 +234,12 @@ public class Details extends AppCompatActivity {
 
         // below line is use to set our
         // url to our media player.
-        try {
-            mediaPlayer.setDataSource(audioUrl);
-            // below line is use to prepare
-            // and start our media player.
-            mediaPlayer.prepare();
-            isLoad = true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        loadAudio(audioUrl);
+        if(!isLoad){
+
+            String otherAudioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + audioLetter + "_15min.mp3";
+            Log.i("links",otherAudioUrl);
+            loadAudio(otherAudioUrl);
         }
         // below line is use to display a toast message.
         Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
@@ -294,6 +331,20 @@ public class Details extends AppCompatActivity {
             // for the duration
             AudioDuration();
 
+        }
+    }
+
+    public void loadAudio(String url){
+        try {
+
+            mediaPlayer.setDataSource(url);
+
+            // below line is use to prepare
+            // and start our media player.
+            mediaPlayer.prepare();
+            isLoad = true;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
