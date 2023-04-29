@@ -120,13 +120,21 @@ public class Details extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
         btnPreview = findViewById(R.id.btnPreview);
 
+        // button to play the next audio
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(audioLetter == 'a'){
+               nextAudio(view);
+            }
+        });
+
+        btnPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(audioLetter == 'c'){
                     audioLetter = 'b';
                 }else if(audioLetter == 'b'){
-                    audioLetter = 'c';
+                    audioLetter = 'a';
                 }
                 String otherAudioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + audioLetter + "_15min.mp3";
                 Log.i("links",otherAudioUrl);
@@ -137,9 +145,10 @@ public class Details extends AppCompatActivity {
                     mediaPlayer = null;
 
                     loadAudio(otherAudioUrl);
+                    playAudio(view);
+
 
                 }
-
             }
         });
 
@@ -336,7 +345,9 @@ public class Details extends AppCompatActivity {
 
     public void loadAudio(String url){
         try {
-
+            if(mediaPlayer == null){
+                mediaPlayer = new MediaPlayer();
+            }
             mediaPlayer.setDataSource(url);
 
             // below line is use to prepare
@@ -348,4 +359,25 @@ public class Details extends AppCompatActivity {
         }
     }
 
+    // function to play the next audio
+    public void nextAudio(View v){
+        if(audioLetter == 'a'){
+            audioLetter = 'b';
+        }else if(audioLetter == 'b'){
+            audioLetter = 'c';
+        }
+        String otherAudioUrl = "https://laparolequichange.org/messages/" + nameBook.toLowerCase() + chapterNber + audioLetter + "_15min.mp3";
+        Log.i("links",otherAudioUrl);
+
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+
+            loadAudio(otherAudioUrl);
+            playAudio(v);
+
+
+        }
+    }
 }
