@@ -1,5 +1,6 @@
 package com.example.laparolequichange;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -7,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +35,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
+import android.os.PowerManager;
 
 public class Details extends AppCompatActivity {
 
@@ -63,11 +66,31 @@ public class Details extends AppCompatActivity {
     char audioLetter = 'a';
     //int audioIndex = 0;
 
+    private PowerManager.WakeLock wakeLock;
+
+
     @Override
     protected void onPause() {
         super.onPause();
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
         }
@@ -92,8 +115,6 @@ public class Details extends AppCompatActivity {
 
         // set Progress bar
         progressBar = findViewById(R.id.pb);
-
-
 
         Livres livres = (Livres) Parcels.unwrap(getIntent().getParcelableExtra("livre"));
         chapterNber = getIntent().getExtras().getInt("chapitre");
@@ -293,7 +314,6 @@ public class Details extends AppCompatActivity {
 
 
             mediaPlayer.start();
-
             seekBar.setMax(mediaPlayer.getDuration());
 
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -301,6 +321,10 @@ public class Details extends AppCompatActivity {
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     if (fromUser) {
                         mediaPlayer.seekTo(progress); // seek to position
+                        updateSeekBar();
+                        if(mediaPlayer.getCurrentPosition() == mediaPlayer.getDuration()){
+                            nextAudio(v);
+                        }
                     }
                 }
 
@@ -312,6 +336,8 @@ public class Details extends AppCompatActivity {
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
                     mediaPlayer.start(); // resume playback once user releases SeekBar thumb
+                    updateSeekBar();
+
                 }
             });
 
@@ -322,24 +348,7 @@ public class Details extends AppCompatActivity {
                 }
             });
 
-            if ( mediaPlayer != null && mediaPlayer.isPlaying()) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mediaPlayer != null) {
-                            if (mediaPlayer.isPlaying()) {
-                                seekBar.setProgress(mediaPlayer.getCurrentPosition());
-                                AudioPosition();
-                                new Handler().postDelayed(this, 100); // update every 100ms
-                            }
-                        }
-
-                    }
-                }, 100);
-            }
-            // for the duration
-            AudioDuration();
-
+            updateSeekBar();
         }
     }
 
@@ -379,5 +388,25 @@ public class Details extends AppCompatActivity {
 
 
         }
+    }
+
+    public void updateSeekBar(){
+        if ( mediaPlayer != null && mediaPlayer.isPlaying()) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        if (mediaPlayer.isPlaying()) {
+                            seekBar.setProgress(mediaPlayer.getCurrentPosition());
+                            AudioPosition();
+                            new Handler().postDelayed(this, 100); // update every 100ms
+                        }
+                    }
+
+                }
+            }, 100);
+        }
+        // for the duration
+        AudioDuration();
     }
 }
