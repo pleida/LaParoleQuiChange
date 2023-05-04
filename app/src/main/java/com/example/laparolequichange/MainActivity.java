@@ -1,5 +1,6 @@
 package com.example.laparolequichange;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvLivres;
     List<Livres> livres;
     LivreAdapter adapter;
+    //SubMenu subMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +107,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.sbSetting:
+                Intent intent = new Intent(MainActivity.this, Setting_Activity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
     // using inflater for menu
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.sub_menu, menu);
         return true;
     }
+
+
 }

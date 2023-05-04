@@ -4,8 +4,7 @@
 
 
 
-        <item android:id="@+id/s11" android:title="Refresh" HTMLCode:showAsAction="ifRoom|withText" />
-        <item android:id="@+id/s12" android:title="Parametres" HTMLCode:showAsAction="ifRoom|withText" />
+        <item android:id="@+id/sbSetting" android:title="Paramètres" HTMLCode:showAsAction="ifRoom|withText" />
 
 
 
