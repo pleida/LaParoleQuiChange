@@ -48,7 +48,7 @@ public class Details extends AppCompatActivity {
     // button and media player
     ImageButton playBtn;
     ImageButton btnNext;
-    ImageButton btnPreview;
+    ImageButton btnPrevious;
     MediaPlayer mediaPlayer;
     // creating a seekbar
     SeekBar seekBar;
@@ -73,9 +73,9 @@ public class Details extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            mediaPlayer = null;
+
+            //mediaPlayer.release();
+           // mediaPlayer = null;
         }
     }
 
@@ -102,6 +102,7 @@ public class Details extends AppCompatActivity {
         Intent intent = new Intent(Details.this,Chapitres.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivityIfNeeded(intent,0);
+        finish();
         return true;
     }
 
@@ -139,7 +140,7 @@ public class Details extends AppCompatActivity {
 
         // initializing the buttons
         btnNext = findViewById(R.id.btnNext);
-        btnPreview = findViewById(R.id.btnPreview);
+        btnPrevious = findViewById(R.id.btnPrevious);
 
         // button to play the next audio
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +150,7 @@ public class Details extends AppCompatActivity {
             }
         });
 
-        btnPreview.setOnClickListener(new View.OnClickListener() {
+        btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(audioLetter == 'c'){
@@ -356,6 +357,7 @@ public class Details extends AppCompatActivity {
         try {
             if(mediaPlayer == null){
                 mediaPlayer = new MediaPlayer();
+                mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
             }
             mediaPlayer.setDataSource(url);
 

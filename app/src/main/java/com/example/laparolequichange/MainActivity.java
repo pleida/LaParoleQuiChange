@@ -2,11 +2,14 @@ package com.example.laparolequichange;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +35,15 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvLivres;
     List<Livres> livres;
     LivreAdapter adapter;
-    //SubMenu subMenu;
+
+
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//
+//        super.onRestoreInstanceState(savedInstanceState);
+//    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setText("La Parole Qui Change");
         // using toolbar as ActionBar
         setSupportActionBar(toolbar);
+
+
 
 
         // Find the recycler view

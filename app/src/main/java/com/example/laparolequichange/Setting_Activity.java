@@ -2,9 +2,12 @@ package com.example.laparolequichange;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +17,10 @@ import android.widget.TextView;
 public class Setting_Activity extends AppCompatActivity {
 
     Switch sMode;
+    boolean nightMode;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     TextView tvAbout;
 
     @Override
@@ -53,5 +60,33 @@ public class Setting_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        sMode = findViewById(R.id.sMode);
+
+        // we used SharedPreferences to save mode if exit the app and go back again
+        sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE);
+        nightMode = sharedPreferences.getBoolean("night", false);
+
+        if(nightMode){
+            sMode.setChecked(true);
+        }
+
+        sMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nightMode){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("night", false);
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("night", true);
+
+                }
+                editor.apply();
+            }
+        });
+
     }
 }

@@ -28,7 +28,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
         android:textSize="18sp"
         android:text="A Propos" />
 </RelativeLayout>

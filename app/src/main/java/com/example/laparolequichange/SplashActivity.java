@@ -1,8 +1,11 @@
 package com.example.laparolequichange;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -15,8 +18,22 @@ public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 5000; // 5 seconds
     private ImageView imageView;
 
+    SharedPreferences sharedPreferences;
+    boolean nightMode;
 
     Animation top_anim, bottom_anim;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // we used SharedPreferences to save mode if exit the app and go back again
+        sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE);
+        nightMode = sharedPreferences.getBoolean("night", false);
+
+        if(nightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +47,7 @@ public class SplashActivity extends AppCompatActivity {
         bottom_anim = AnimationUtils.loadAnimation(this,R.anim.bottom_anim);
 
         imageView.setAnimation(bottom_anim);
+
 
         new Handler().postDelayed(new Runnable(){
               @Override

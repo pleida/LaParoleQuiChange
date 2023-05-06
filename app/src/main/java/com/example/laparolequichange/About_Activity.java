@@ -31,7 +31,7 @@ public class About_Activity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         TextView tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText("A propos de La Parole Qui Change");
+        tvTitle.setText("A propos");
 
         // using toolbar as ActionBar
         setSupportActionBar(toolbar);
@@ -48,36 +48,26 @@ public class About_Activity extends AppCompatActivity {
 
         // Create a text view and add it to the container
         TextView textView = findViewById(R.id.tvAboutDetail);
-        textView.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet turpis auctor, vehicula velit non, convallis risus. Fusce non semper " +
-                "arcu. Duis aliquam sem in felis efficitur, sed pharetra lorem tincidunt. " +
-                "Integer bibendum, mauris quis fermentum tincidunt, eros quam tristique massa," +
-                " eu luctus risus nisi non odio. Etiam sagittis faucibus aliquam. Sed sed dui vel " +
-                "libero finibus volutpat eget id diam. Donec pellentesque est sapien, nec vestibulum " +
-                "odio commodo a. Vestibulum quis tortor a mi tristique imperdiet. Donec elementum justo " +
-                " nulla commodo commodo. Nam sit amet libero non augue lobortis commodo. Morbi bibendum " +
-                "gravida sapien, a pellentesque nisl feugiat id. Nunc id bibendum nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet turpis auctor, vehicula velit non, convallis risus. Fusce non semper \" +\n" +
-                "arcu. Duis aliquam sem in felis efficitur, sed pharetra lorem tincidunt. " +
-                "Integer bibendum, mauris quis fermentum tincidunt, eros quam tristique massa," +
-                "eu luctus risus nisi non odio. Etiam sagittis faucibus aliquam. Sed sed dui vel " +
-                "libero finibus volutpat eget id diam. Donec pellentesque est sapien, nec vestibulum " +
-                "odio commodo a. Vestibulum quis tortor a mi tristique imperdiet. Donec elementum justo " +
-                " nulla commodo commodo. Nam sit amet libero non augue lobortis commodo. Morbi bibendum " +
-                "gravida sapien, a pellentesque nisl feugiat id. Nunc id bibendum nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet turpis auctor, vehicula velit non, convallis risus. Fusce non semper \" +\n" +
-                "arcu. Duis aliquam sem in felis efficitur, sed pharetra lorem tincidunt. " +
-                "Integer bibendum, mauris quis fermentum tincidunt, eros quam tristique massa," +
-                " eu luctus risus nisi non odio. Etiam sagittis faucibus aliquam. Sed sed dui vel " +
-                "libero finibus volutpat eget id diam. Donec pellentesque est sapien, nec vestibulum " +
-                "odio commodo a. Vestibulum quis tortor a mi tristique imperdiet. Donec elementum justo " +
-                " nulla commodo commodo. Nam sit amet libero non augue lobortis commodo. Morbi bibendum " +
-                "gravida sapien, a pellentesque nisl feugiat id. Nunc id bibendum nulla.Lorem ipsum dolor sit amet, " +
-                "consectetur adipiscing elit. Sed sit amet turpis auctor, vehicula velit non, convallis risus. Fusce non semper " +
-                "arcu. Duis aliquam sem in felis efficitur, sed pharetra lorem tincidunt. " +
-                "Integer bibendum, mauris quis fermentum tincidunt, eros quam tristique massa," +
-                "eu luctus risus nisi non odio. Etiam sagittis faucibus aliquam. Sed sed dui vel " +
-                "libero finibus volutpat eget id diam. Donec pellentesque est sapien, nec vestibulum " +
-                "odio commodo a. Vestibulum quis tortor a mi tristique imperdiet. Donec elementum justo " +
-                " nulla commodo commodo. Nam sit amet libero non augue lobortis commodo. Morbi bibendum " +
-                "gravida sapien, a pellentesque nisl feugiat id. Nunc id bibendum nulla.");
+        textView.setText("La Parole Qui Change est une application Android de Calvary Chapel qui procure une aide à " +
+                "ses utilisateurs dans l’étude de la parole de Dieu. Chaque chapitre de la Bible est traité, commenté " +
+                "et appuyé d’exemples dans un fichier PDF. L’utilisateur aura aussi la version audio de cette étude à " +
+                "sa disposition.\n" +
+                "\n" +
+                "Cette application tient son origine de l’émission du même nom diffusé sur la Radio Lumière. " +
+                "Elle a été créée premièrement dans le but de rendre accessible aux auditeurs le contenu de l’émission. " +
+                "Mais il s’avère que cette étude biblique peut aider beaucoup de gens. Donc La Parole Qui Change est plutôt " +
+                "un complément apporte à la lecture de la bible, une mise en contexte de ce que l’utilisateur a lu dans la bible.\n" +
+                "\n" +
+                "Il existe bien d’autres applications fournissant des commentaires bien élaborés sur la Parole de Dieu. " +
+                "Contrairement à ces dernières, La Parole Qui Change accompagne son contenu d’une audio plaçant les paroles " +
+                "enseignées par la bible dans un contexte haïtien, facilitant ainsi une meilleure compréhension du sujet en question. " +
+                "En guise de résumer, La Parole Qui Change est une application tout comme l’émission, qui étudie la Bible livre par livre, " +
+                "chapitre par chapitre, verset par verset.\n" +
+                "\n" +
+                "Audio et PDF réalisés par Seige R. Poteau\n" +
+                "Version: 1.0\n" +
+                "La Parole Qui Change\n" +
+                "© 2023 UEspoir. tous droits reservés.");
         textView.setPadding(20, 20, 20, 20);
         textView.setTextSize(16);
 //        container.addView(textView);

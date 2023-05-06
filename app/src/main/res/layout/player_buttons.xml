@@ -6,7 +6,7 @@
 
 
     <ImageButton
-        android:id="@+id/btnPreview"
+        android:id="@+id/btnPrevious"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
