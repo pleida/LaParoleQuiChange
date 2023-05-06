@@ -1,22 +1,19 @@
 # LaParoleQuiChange
+## La Parole Qui Change est une application Android de Calvary Chapel qui procure une aide à ses utilisateurs dans l’étude de la parole de Dieu. Chaque chapitre de la Bible est traité, commenté et appuyé d’exemples dans un fichier PDF. L’utilisateur aura aussi la version audio de cette étude à sa disposition.
 
 ###  L'Utilisateur
 
 - [x] Peut parcourir les livres et les chapitres.
 - [x] Peut choisir le chapitre qu’il veut étudier.
 - [x]	A accès au texte et a l’audio du chapitre choisi.
--[x] 
-- [x] Trailers for popular movies are played automatically when the movie is selected (1 point).
+- [x] Peut alterner entre le mode sombre et lumineux.
+
   
 
-### App Walkthough GIF
+### Aperçu de l'application GIF
 
 <img src="Walkthrough2.gif" width=250><br>
 
-### Notes
 
-Describe any challenges encountered while building the app.
 
-## Open-source libraries used
-- [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
-- [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
+
