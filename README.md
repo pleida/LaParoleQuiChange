@@ -12,7 +12,7 @@
 
 ### Aperçu de l'application GIF
 
-<img src="Walkthrough2.gif" width=250><br>
+<img src="lpqc.gif" width=250><br>
 
 
 
